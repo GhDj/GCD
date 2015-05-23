@@ -1,0 +1,80 @@
+{%extends "GCDBundle::layout.html.twig"%}
+
+
+
+{%block container %}
+  
+      {{form_start(form,{ 'attr': {'class': 'form-signin','method' : 'POST'}})}}
+      <!--<form class="form-signin" method="post" action="" >-->
+       
+        <h2 class="form-signin-heading">Inscription Dentiste</h2>
+     <div class="form_align">
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Nom" name="username" autofocus="">-->
+        {{form_widget(form.nomDentiste, { 'attr': {'class': 'form-control','placeholder' : 'Nom','autofocus':''}})}}
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="prenom" name="username" >-->
+        {{form_widget(form.prenomDentiste, { 'attr': {'class': 'form-control','placeholder' : 'Prenom'}})}}
+         <!--<input type="text" id="inputEmail" class="form-control" placeholder="E-mail" name="username" >-->
+       {{form_widget(form.emailDentiste, { 'attr': {'class': 'form-control','placeholder' : 'Email'}})}}
+       <!--<input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" name="password" >-->
+       {{form_widget(form.password, { 'attr': {'class': 'form-control','placeholder' : 'Password'}})}}
+
+    </div>
+    <div class="form_align">
+      <!--  <input type="text" id="inputEmail" class="form-control" placeholder="Nom d'utilisateur" name="username" >>-->
+     {{form_widget(form.telDentiste, { 'attr': {'class': 'form-control','placeholder' : 'Tel'}})}}
+       {{form_widget(form.adresseDentiste, { 'attr': {'class': 'form-control','placeholder' : 'AdresseDentiste'}})}}
+
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Telephone Mobile" name="username" >-->
+        {{form_widget(form.adresseCabinet, { 'attr': {'class': 'form-control','placeholder' : 'AdresseCabinet'}})}}
+
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Adresse Cabinet" name="username" >-->
+       {{form_widget(form.telCabinet, { 'attr': {'class': 'form-control','placeholder' : 'TelCabinet'}})}}
+
+        <!-- <input type="text" id="inputEmail" class="form-control" placeholder="Telephone Cabinet" name="username">-->
+        
+
+
+    </div>
+
+  <div class="form_radio">
+        
+        
+        
+        {% for child in form.sexe %}
+         
+      <span class="radio inline">  
+      
+      {{ form_widget(child) }}
+      <span>{{ form_label(child)}} </span>
+      </span>
+        {% endfor %}
+            
+  <!--<label class="radio inline"> 
+      <input type="radio" name="sexe" value="male" checked>
+      <span> Homme </span> 
+   </label>
+  <label class="radio inline"> 
+      <input type="radio" name="sexe" value="female">
+      <span>Femme </span> 
+  </label>-->
+</div>
+ <!-- <button id="connecter" class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>-->
+           {{form_widget(form.inscrire, { 'attr': {'class': 'btn btn-lg btn-primary btn-block','id' : 'connecter'}})}}
+{{ form_row(form._token) }}
+      </form>
+     
+  
+    {% if name is defined %}
+    <div class="alert-info fade in">
+      <strong>
+          {{name}}
+      </strong>  
+    
+    </div>
+    
+    {%endif%}
+    
+
+    {{form_end(form)}}
+    
+{%endblock%}

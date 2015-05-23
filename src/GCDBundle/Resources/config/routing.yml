@@ -1,0 +1,34 @@
+gcd_homepage:
+    path:     /
+    defaults: { _controller: GCDBundle:Default:index }
+gcd_connexion:
+    path:     /connexion
+    defaults: { _controller: GCDBundle:Security:login }
+    
+gcd_ajout_dentiste:
+    path:     /AjoutDeniste
+    defaults: { _controller: GCDBundle:Ajout:AjoutDentiste }
+
+gcd_ajoutCabinet:
+    path:     /Ajout/Cabinet
+    defaults: { _controller: GCDBundle:Cabinets:AjoutCabinet}
+
+gcd_ajoutSecretaire:
+    path:     /Ajout/Secretaire
+    defaults: { _controller: GCDBundle:Ajout:AjoutSecretaire}
+
+gcd_ajoutPatient:
+    path:     /Ajout/Patient
+    defaults: { _controller: GCDBundle:Ajout:AjoutPatient}
+
+gcd_ajoutRdv:
+    path:     /Ajout/Rdv
+    defaults: { _controller: GCDBundle:Ajout:AjoutRDV}
+
+gcd_compte:
+    path:     /Modifier/Compte
+    defaults: { _controller: GCDBundle:Compte:ModifierDentite}
+    
+gcd_ajout_confirmation:
+    path:     /Ajout/Confirmation
+    defaults: { _controller: GCDBundle:Ajout:Confirmation }

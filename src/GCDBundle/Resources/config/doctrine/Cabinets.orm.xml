@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="GCDBundle\Entity\Cabinets" table="cabinets">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomCabinet" type="string" column="nom_cabinet" length="50" nullable="false"/>
+    <field name="adresseCabinet" type="string" column="adresse_cabinet" length="50" nullable="false"/>
+    <field name="telCabinet" type="integer" column="tel_cabinet" nullable="false"/>
+    <field name="nomDentiste" type="string" column="nom_dentiste" length="50" nullable="false"/>
+    <field name="horraireOuverture" type="time" column="horraire_ouverture" nullable="false"/>
+    <field name="horraireFermeture" type="time" column="horraire_fermeture" nullable="false"/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,85 @@
+{%extends "GCDBundle::layout.html.twig"%}
+{%block container %}
+    
+   {% if is_granted("ROLE_DENTISTE")||is_granted("ROLE_SECRETAIRE") %}
+  
+      {{form_start(form,{ 'attr': {'class': 'form-signin','method' : 'POST'}})}}
+      <!--<form class="form-signin" method="post" action="" >-->
+       
+        <h2 class="form-signin-heading">Ajout Patient</h2>
+     <div class="form_align">
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Nom" name="username" autofocus="">-->
+        {{form_widget(form.nomPatient, { 'attr': {'class': 'form-control','placeholder' : 'Nom','autofocus':''}})}}
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="prenom" name="username" >-->
+        {{form_widget(form.prenomPatient, { 'attr': {'class': 'form-control','placeholder' : 'Prenom'}})}}
+     
+         {{form_widget(form.adressePatient, { 'attr': {'class': 'form-control','placeholder' : 'Adresse Patient'}})}}
+         {{form_widget(form.idFiche, { 'attr': {'class': 'form-control','placeholder' : 'id fiche'}})}}
+
+ <div class="form_radio">
+        
+        
+        
+        {% for child in form.sexe %}
+         
+      <span class="radio inline">  
+      
+      {{ form_widget(child) }}
+      <span>{{ form_label(child)}} </span>
+      </span>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="form_align">
+                 {{form_widget(form.pwPatient, { 'attr': {'class': 'form-control','placeholder' : 'Mot de passe'}})}}
+
+             {{form_widget(form.dateNaiss, { 'attr': {'class': 'form-control','placeholder' : 'Date de naissance'}})}}
+           {{form_widget(form.emailPatient, { 'attr': {'class': 'form-control','placeholder' : 'Email'}})}}
+
+      <!--  <input type="text" id="inputEmail" class="form-control" placeholder="Nom d'utilisateur" name="username" >>-->
+
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Telephone Mobile" name="username" >-->
+        {{form_widget(form.telPatient, { 'attr': {'class': 'form-control','placeholder' : 'Numero telephone'}})}}
+
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Adresse Cabinet" name="username" >-->
+       {{form_widget(form.cnam, { 'attr': {'class': 'form-control','placeholder' : 'Numero CNAM'}})}}
+
+        <!-- <input type="text" id="inputEmail" class="form-control" placeholder="Telephone Cabinet" name="username">-->
+        
+
+
+    </div>
+
+ 
+            
+  <!--<label class="radio inline"> 
+      <input type="radio" name="sexe" value="male" checked>
+      <span> Homme </span> 
+   </label>
+  <label class="radio inline"> 
+      <input type="radio" name="sexe" value="female">
+      <span>Femme </span> 
+  </label>-->
+
+ <!-- <button id="connecter" class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>-->
+           {{form_widget(form.inscrire, { 'attr': {'class': 'btn btn-lg btn-primary btn-block','id' : 'connecter'}})}}
+{{ form_row(form._token) }}
+      </form>
+     
+  
+    {% if name is defined %}
+    <div class="alert-info fade in">
+      <strong>
+          {{name}}
+      </strong>  
+    
+    </div>
+    
+    {%endif%}
+    
+
+    {{form_end(form)}}
+    {% else %}
+        <h2>Vous n'avez pas le droit d'ajouter des patients.</h2>
+{% endif %}
+{%endblock%}

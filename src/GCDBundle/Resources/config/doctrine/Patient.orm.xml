@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="GCDBundle\Entity\Patient" table="patient">
+    <unique-constraints>
+      <unique-constraint name="id_patient" columns="id_patient"/>
+    </unique-constraints>
+    <id name="idPatient" type="integer" column="id_patient">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomPatient" type="string" column="nom_patient" length="50" nullable="false"/>
+    <field name="prenomPatient" type="string" column="prenom_patient" length="50" nullable="false"/>
+    <field name="dateNaiss" type="date" column="date_naiss" nullable="false"/>
+    <field name="adressePatient" type="string" column="adresse_patient" length="50" nullable="false"/>
+    <field name="telPatient" type="integer" column="tel_patient" nullable="false"/>
+    <field name="cnam" type="integer" column="cnam" nullable="false"/>
+    <field name="sexe" type="string" column="sexe" length="50" nullable="false"/>
+    <field name="emailPatient" type="string" column="email_patient" length="50" nullable="false"/>
+    <field name="pwPatient" type="string" column="pw_patient" length="50" nullable="false"/>
+    <field name="idFiche" type="integer" column="id_fiche" nullable="false"/>
+  </entity>
+</doctrine-mapping>
