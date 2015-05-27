@@ -1,0 +1,59 @@
+{% extends "GCDBundle::layout.html.twig" %}
+{%block stylesheets %}
+<style>
+@font-face {
+    font-family:digital;
+    src: url({{ asset('bundles/gcd/font/DS-DIGIB.TTF') }});
+}
+#gcd_authentificationbundle_rdv_horraireRdv_hour,#gcd_authentificationbundle_rdv_horraireRdv_minute,#gcd_authentificationbundle_rdv_horraireRdv{
+  font-family: digital;
+  font-size: 30px;
+  border: 0px;
+  color: rgb(47, 187, 241);
+}
+</style>
+{%endblock%}
+
+{%block container %}
+  
+      {{form_start(form,{ 'attr': {'class': 'form-signin','method' : 'POST'}})}}
+      <!--<form class="form-signin" method="post" action="" >-->
+      <h2>
+          {% if name is defined %}
+          {{name}}
+          {% endif %}
+      </h2>
+        <h2 class="form-signin-heading">Ajouter une acte medicale</h2>
+     <div class="form_align">
+         
+            {{form_widget(form.idPatient, { 'attr': {'class': 'form-control','placeholder':'Nom de patient'}})}}
+
+     <input type="hidden" name="gcdbundle_actmedical_nomPatient" />
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Nom" name="username" autofocus="">-->
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="prenom" name="username" >-->
+       {{form_widget(form.libelle, { 'attr': {'class': 'form-control','placeholder' : 'Libelle de l\'act'}})}}
+        {{form_widget(form.description, { 'attr': {'class': 'form-control','placeholder' : 'Description de l\'act'}})}}
+
+    </div>
+  
+
+  
+ <!-- <button id="connecter" class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>-->
+           {{form_widget(form.Ajouter, { 'attr': {'class': 'btn btn-lg btn-primary btn-block','id' : 'connecter'}})}}
+{{ form_row(form._token) }}
+      </form>
+     
+  
+
+    
+{{form_end(form)}}
+    
+{%endblock%}
+
+{%block javascripts %}
+
+<script>
+  
+</script>
+
+{% endblock %}

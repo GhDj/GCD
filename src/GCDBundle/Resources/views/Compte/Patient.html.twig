@@ -1,0 +1,106 @@
+{%extends "GCDBundle::layout.html.twig"%}
+
+{%block container %}
+   {{form_start(form,{ 'attr': {'class': 'form-signin','method' : 'POST'}})}}
+            <h2 class="alert-danger">Iil faut remplir tous les champs!!</h2>
+    <div id="gauche" class="col-sm-6">  
+            <div class="mod">
+                <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}" onclick='modifier_nom();'/> 
+          {{form_widget(form.nomPatient, { 'attr': {'class': 'modif-input','disabled':''}})}}
+            </div>
+                       <div class="mod">
+                          
+
+            <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}"onclick='modifier_prenom();'/> 
+{{form_widget(form.prenomPatient, { 'attr': {'class': 'modif-input','disabled':''}})}}                       </div>
+                        <div class="mod">
+
+            <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}"onclick='modifier_email();'/> 
+{{form_widget(form.emailPatient, { 'attr': {'class': 'modif-input','disabled':''}})}}                      </div>
+                        <div class="mod">
+
+            <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}"onclick='modifier_pw();'/> 
+{{form_widget(form.pwPatient, { 'attr': {'class': 'modif-input','disabled':'', 'placeolder':'Nouveau mot de passe'}})}}         </div>
+     </div>
+     <div id="droite" class="col-sm-6">
+    
+     <div class="mod">
+
+            <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}"onclick='modifier_teld();'/> 
+{{form_widget(form.telPatient, { 'attr': {'class': 'modif-input','disabled':''}})}}         </div>
+    
+    
+    <div class="mod">
+
+            <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}"onclick='modifier_adrd();'/> 
+{{form_widget(form.adressePatient, { 'attr': {'class': 'modif-input','disabled':''}})}}                      </div>
+    
+   
+    <div class="mod">
+
+            <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}"onclick='modifier_adrc();'/> 
+{{form_widget(form.dateNaiss, { 'attr': {'class': 'modif-input','disabled':''}})}}                      </div>
+   
+   <div class="mod">
+
+          <img class="img-modifier" src="{{ asset('bundles/gcd/images/modifier.png') }}"onclick='modifier_cnam();'/> 
+{{form_widget(form.cnam, { 'attr': {'class': 'modif-input','disabled':''}})}}                      </div>
+             <!--<button id="connecter" class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>-->
+ {{form_widget(form.idFiche, { 'attr': {'class': 'modif-input','style':'display:none;'}})}}                      </div>
+{% for child in form.sexe %}
+         
+      <span class="radio inline">  
+      
+      {{ form_widget(child) }}
+      <span>{{ form_label(child)}} </span>
+      </span>
+        {% endfor %}
+     </div>
+             
+             {{form_widget(form.inscrire, { 'attr': {'class': 'btn btn-lg btn-primary btn-block','id' : 'connecter','value':'Enregistrer'}})}}
+     
+  {{form_end(form)}}
+{%endblock%}
+
+
+{%block javascripts %}
+
+<script>
+function modifier_nom (){
+    document.getElementById("gcdbundle_patient_nomPatient").removeAttribute("disabled");
+    document.getElementById("gcdbundle_patient_nomPatient").value="{{patient.nomPatient}}";
+}
+function modifier_prenom(){
+    document.getElementById("gcdbundle_patient_prenomPatient").removeAttribute("disabled");
+}
+function modifier_email (){
+    document.getElementById("gcdbundle_patient_emailPatient").removeAttribute("disabled");
+}
+function modifier_pw(){
+    document.getElementById("gcdbundle_patient_password").removeAttribute("disabled");
+}
+function modifier_teld(){
+    document.getElementById("gcdbundle_patient_telPatient").removeAttribute("disabled");
+}
+function modifier_adrd(){
+    document.getElementById("gcdbundle_patient_adressePatient").removeAttribute("disabled");
+}
+function modifier_adrc(){
+    document.getElementById("gcdbundle_patient_adresseCabinet").removeAttribute("disabled");
+}
+function modifier_telc(){
+    document.getElementById("gcdbundle_patient_telCabinet").removeAttribute("disabled");
+}
+
+function modifier_cnam(){
+    document.getElementById("gcdbundle_patient_cnam").removeAttribute("disabled");
+}
+</script>
+  {%endblock%}
+  
+  
+  
+  
+  
+  
+  

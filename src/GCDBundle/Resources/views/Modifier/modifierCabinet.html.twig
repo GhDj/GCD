@@ -1,0 +1,88 @@
+{% extends "GCDBundle::layout.html.twig" %}
+
+{%block stylesheets %}
+<style>
+@font-face {
+    font-family:digital;
+    src: url({{ asset('bundles/gcd/font/DS-DIGIB.TTF') }});
+}
+#gcd_authentificationbundle_cabinets_horraireOuverture select,#gcd_authentificationbundle_cabinets_horraireFermeture select{
+  font-family: digital;
+  font-size: 30px;
+  border: 0px;
+  color: rgb(47, 187, 241);
+}
+</style>
+{%endblock%}
+{%block container %}
+    
+ 
+  
+      {{form_start(form,{ 'attr': {'class': 'form-signin','method' : 'POST'}})}}
+      <!--<form class="form-signin" method="post" action="" >-->
+       
+        <h2 class="form-signin-heading">Modifier Cabinet</h2>
+     <div class="form_rdv">
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Nom" name="username" autofocus="">-->
+        {{form_widget(form.nomCabinet, { 'attr': {'class': 'form-control','placeholder' : 'NomCabinet','autofocus':''}})}}
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="prenom" name="username" >-->
+        {{form_widget(form.adresseCabinet, { 'attr': {'class': 'form-control','placeholder' : 'adresseCabinet'}})}}
+     
+         {{form_widget(form.telCabinet, { 'attr': {'class': 'form-control','placeholder' : 'telCabinet'}})}}
+            {{form_widget(form.nomDentiste, { 'attr': {'class': 'form-control','placeholder' : 'idP','id':'idpa','style':'display:none;'}})}}
+
+<select name="idd" class="form-control" id="idd">
+              <option value="">Choisir le dentiste</option>
+     {% for d in Dentiste %}
+        <option value="{{ d.id}}">  {{ d.nomDentiste}} {{ d.prenomDentiste}}</option>
+     
+     {%endfor%}
+     </select>
+         {{form_widget(form.horraireOuverture, { 'attr': {'class': 'form-control','placeholder' : 'horraireOuverture'}})}}
+         {{form_widget(form.horraireFermeture, { 'attr': {'class': 'form-control','placeholder' : 'horraireFermeture'}})}}
+
+ 
+    </div>
+    
+
+ 
+            
+  <!--<label class="radio inline"> 
+      <input type="radio" name="sexe" value="male" checked>
+      <span> Homme </span> 
+   </label>
+  <label class="radio inline"> 
+      <input type="radio" name="sexe" value="female">
+      <span>Femme </span> 
+  </label>-->
+
+ <!-- <button id="connecter" class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>-->
+           {{form_widget(form.inscrire, { 'attr': {'class': 'btn btn-lg btn-primary btn-block','id' : 'connecter'}})}}
+{{ form_row(form._token) }}
+      </form>
+     
+  
+    {% if name is defined %}
+    <div class="alert-info fade in">
+      <strong>
+          {{name}}
+      </strong>  
+    
+    </div>
+    
+    {%endif%}
+    
+
+    {{form_end(form)}}
+    
+{%endblock%}
+{%block javascripts %}
+
+<script>
+    $("#idd").change(function(){
+        
+        $('#gcdbundle_cabinets_nomDentiste').val($('#idd option:selected').val()) ;
+    });
+</script>
+
+{% endblock %}

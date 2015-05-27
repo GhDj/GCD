@@ -1,20 +1,65 @@
-{% extends "GCDBundle::layout.html.twig" %}
+<!DOCTYPE html>
+<html lang="fr"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-{% trans_default_domain 'FOSUserBundle' %}
+    <title>Gestion Cabinets Dentaires</title>
 
-{% block container %}
-<div>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('bundles/gcd/css/bootstrap.min.css') }}" rel="stylesheet" />
+                <link href="{{ asset('bundles/gcd/css/accueil.css') }}" rel="stylesheet" />
+
+  <body>
+      
+    
+
+
+<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead">
+            <div class="header-logo">
+                  </div>
+             
+              <nav class="navbar navbar-inverse navbar-fixed-top">
+                                  <img class="img-responsive masthead-brand" height="50" src="{{ asset('bundles/gcd/images/logo_acc.png') }}" />
+
+                <ul class="nav nav-justified">
+                  <li class="active"><a href="#">Accueil</a></li>
+                  <li><a href="#">Forum</a></li>
+                  <li><a href="#">A propos</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </nav>
+          
+          </div>
+
+          <div class="inner cover text-center">
+            <h1 class="cover-heading">  
+            </h1>
+            <p class="lead">
+            <div>
+               
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {% if is_granted("ROLE_USER") %}
-                    Hi {{ app.user.username }}
+                    Bonjour {{ app.user.username }}
                 {% endif %}
                  |
                 <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
                 </a>
             {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'login'|trans({}, 'FOSUserBundle') }}</a>
-                <p> Page d'accueil !!</p>
+                
+               <p class="lead">
+              <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-default">Se Connecter</a>
+            </p>
             {% endif %}
         </div>
 
@@ -28,5 +73,43 @@
             {% endfor %}
         {% endif %}
 
-        <div>
-{% endblock container %}
+        <div></p>
+            
+          </div>
+
+          <div class="mastfoot">
+            <div id="cnx" class="inner">
+
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{{ asset('bundles/gcd/js/bootstrap.min.js') }}"></script>
+  
+    <script>
+        $("p.cnx").click(function(event){
+    t = t +1;
+    $.ajax({
+
+       type: "POST",
+       url: "{{path('gcd_connexion')}}",
+       cache: "false",
+       dataType: "html",
+       success: function(result){
+       $("div#cnx").append(result);    
+       }
+    });
+  });
+    </script>
+
+</body></html>

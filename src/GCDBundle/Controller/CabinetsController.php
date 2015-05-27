@@ -68,4 +68,57 @@ public function AjoutCabinetAction(Request $request)
         return $this->render('GCDBundle:Ajout:AjoutCabinet.html.twig',array('form'=>$form->createView(),'formD'=>$formD->createView(),'Dentiste'=>$Dentiste));
 
     }
+    
+public function ModifCabinetAction(Request $request,$id)
+    {
+        $rep = $this->getDoctrine()->getRepository('GCDBundle:Cabinets');
+        $cabinet =new Cabinets();
+        $cabinet = $rep->find($id);
+       $Dentiste = new Dentiste();
+
+        $form = $this->createForm(new CabinetsType(),$cabinet);
+          $formD = $this->createForm(new DentisteType(),$Dentiste);
+        $request = $this->getRequest();
+        
+        $form->handleRequest($request);
+        
+        if($request->getMethod() == "POST" ) {
+            if ($form->isValid()){
+                $nomCabinet = $form->get('nomCabinet')->getData();
+                $adresseCabinet = $form->get('adresseCabinet')->getData();
+                $telCabinet = $form->get('telCabinet')->getData();
+                $nomDentiste = $form->get('nomDentiste')->getData();
+                $horraireOuverture = $form->get('horraireOuverture')->getData();
+              
+                $horraireFermeture = $form->get('horraireFermeture')->getData();
+
+                $cabinet->setNomCabinet($nomCabinet);
+                $cabinet->setAdresseCabinet($adresseCabinet);
+                $cabinet->setTelCabinet($telCabinet);
+                $cabinet->setNomDentiste($nomDentiste);                
+                
+                
+
+                $cabinet->setHorraireOuverture($horraireOuverture);
+                $cabinet->setHorraireFermeture($horraireFermeture);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($cabinet);
+                $em->flush();
+                
+              
+                $url = $this->generateUrl('gcd_liste_cabinets');
+                $response = new RedirectResponse($url);
+                return $response;
+                //return new Response($nom.' ajouté à la base');
+               
+                
+            }
+
+            
+        }
+          $Dentiste=$this->getDoctrine()-> getRepository('GCDBundle:Dentiste')->findAll();
+        return $this->render('GCDBundle:Modifier:modifierCabinet.html.twig',array('form'=>$form->createView(),'formD'=>$formD->createView(),'Dentiste'=>$Dentiste));
+
+    }
 }

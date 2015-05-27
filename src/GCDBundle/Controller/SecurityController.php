@@ -88,4 +88,25 @@ class SecurityController extends Controller
     {
         throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
     }
+    
+     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
+    {
+        // On récupère la liste des rôles d'un utilisateur
+        $roles = $token->getRoles();
+        // On transforme le tableau d'instance en tableau simple
+        $rolesTab = array_map(function($role){ 
+          return $role->getRole(); 
+        }, $roles);
+        // S'il s'agit d'un admin ou d'un super admin on le redirige vers le backoffice
+        if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('backoffice_homepage'));
+        // sinon, s'il s'agit d'un commercial on le redirige vers le CRM
+        elseif (in_array('ROLE_COMMERCIAL', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('crm_homepage'));
+        // sinon il s'agit d'un membre
+        else
+            $redirection = new RedirectResponse($this->router->generate('member_homepage'));
+ 
+        return $redirection;
+    }
 }

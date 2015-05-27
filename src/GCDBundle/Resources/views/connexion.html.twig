@@ -7,19 +7,20 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
+<form style="width:35%;" class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+  
+    <input type="text" class="form-control"  id="username" name="_username" value="{{ last_username }}" required="required" />
 
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" />
+   
+    <input type="password" class="form-control"  id="password" name="_password" required="required" />
 
+    <div class="form-group">
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    <label for="remember_me" >Se souvenir de moi</label>
+    </div>
+    <input id="connecter" class="btn btn-lg btn-primary btn-block" type="submit" id="_submit" name="_submit" value="Se connecter" />
 </form>
     
 {% endblock %}

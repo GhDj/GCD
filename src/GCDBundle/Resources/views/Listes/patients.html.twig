@@ -1,0 +1,53 @@
+{% extends "GCDBundle::layout.html.twig" %}
+
+{%block container %}
+
+{% if app.user.username is defined %}      
+   <div id="utilisateur">
+         <div class="deconnexion">
+             
+             <a href="{{ path('gcd_deconnexion') }}">
+                 <span> Déconnexion</span>
+                 <img class="img-responsive decon-img" src="{{ asset('bundles/gcd/images/deconnexion.png') }}"/> 
+             </a>
+            </div>
+              <div class="profile">
+         
+               <a href="{{ path('gcd_compte') }}">
+            <span> {{ app.user.username }} </span>
+         <img class="img-responsive profile-img" src="{{ asset('bundles/gcd/images/profile.png') }}"/> 
+
+          
+        </a>
+        </div>
+        </div>
+         {% endif %} 
+ 
+
+<tbody>
+     <table border="5px" style="border-color:white" >
+    {% for pat in patient %}
+
+        <tr border-color:"white" >
+         <td  border="5px"  style="color: white;"> {{ pat.nomPatient }}
+                   <a href="{{ path('gcd_modifierPatient',{ id:pat.idPatient})}}">
+                          <img class="img-responsive decon-img" src="{{ asset('bundles/gcd/images/fiche.png') }}"/>
+                    </a>
+                               
+                    <a href="{{ path('gcd_suppPatient',{ id:pat.idPatient})}}">
+
+                            <img class="img-responsive decon-img" src="{{ asset('bundles/gcd/images/supp.png') }}"/>
+
+                   </a>
+           </td>
+                
+              
+    
+        </tr>
+
+    {%endfor%}
+      </table>
+      
+</tbody>
+
+{% endblock %}

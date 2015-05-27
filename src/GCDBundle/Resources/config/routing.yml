@@ -5,6 +5,10 @@ gcd_connexion:
     path:     /connexion
     defaults: { _controller: GCDBundle:Security:login }
     
+gcd_deconnexion:
+    path:     /logout
+    defaults: { _controller: GCDBundle:Security:logout }
+     
 gcd_ajout_dentiste:
     path:     /AjoutDeniste
     defaults: { _controller: GCDBundle:Ajout:AjoutDentiste }
@@ -27,8 +31,76 @@ gcd_ajoutRdv:
 
 gcd_compte:
     path:     /Modifier/Compte
-    defaults: { _controller: GCDBundle:Compte:ModifierDentite}
+    defaults: { _controller: GCDBundle:Compte:ModifierCompte}
     
 gcd_ajout_confirmation:
     path:     /Ajout/Confirmation
     defaults: { _controller: GCDBundle:Ajout:Confirmation }
+
+gcd_patient_ajouter_act:
+    path:   /Paitent/ajouter/act_medical
+    defaults: { _controller: GCDBundle:Fiche:AjoutActM }
+    
+gcd_liste_dentistes:
+    path:   /listes/dentistes
+    defaults: { _controller: GCDBundle:Liste:Dentistes}
+
+gcd_liste_patients:
+    path:   /listes/patients
+    defaults: { _controller: GCDBundle:Liste:Patients}
+
+gcd_liste_secretaires:
+    path:   /listes/secretaires
+    defaults: { _controller: GCDBundle:Liste:Secretaires}
+    
+gcd_liste_cabinets:
+    path:   /listes/cabinets
+    defaults: { _controller: GCDBundle:Liste:Cabinets}
+    
+gcd_modifierDentiste:
+    path: /modifier/dentiste/{id}
+    defaults: { _controller: GCDBundle:Modifier:ModifDentiste }
+    
+gcd_suppDentiste:
+    path: /Supprimer/dentiste/{id}
+    defaults: { _controller: GCDBundle:Supprimer:SuppDentiste }
+    
+gcd_modifierPatient:
+    path: /modifier/patient/{id}
+    defaults: { _controller: GCDBundle:Modifier:ModifPatient }
+    
+gcd_suppPatient:
+    path: /Supprimer/patient/{id}
+    defaults: { _controller: GCDBundle:Supprimer:SuppPatient }
+    
+gcd_modifierSecretaire:
+    path: /modifier/secretaire/{id}
+    defaults: { _controller: GCDBundle:Modifier:ModifSecretaire }
+    
+gcd_suppSecretaire:
+    path: /Supprimer/secretaire/{id}
+    defaults: { _controller: GCDBundle:Supprimer:SuppSecretaire }
+
+gcd_modifierCabinet:
+    path: /modifier/cabinet/{id}
+    defaults: { _controller: GCDBundle:Cabinets:ModifCabinet }
+    
+gcd_suppCabinet:
+    path: /Supprimer/cabinet/{id}
+    defaults: { _controller: GCDBundle:Supprimer:SuppCabinet }
+ 
+gcd_dentiste:
+    path: /dentiste
+    defaults: { _controller: GCDBundle:TB:Dentiste }
+
+gcd_secretaire:
+    path: /secretaire
+    defaults: { _controller: GCDBundle:TB:Secretaire }
+    
+gcd_patient:
+    path: /patient
+    defaults: { _controller: GCDBundle:TB:Patient }
+
+gcd_admin:
+    path: /admin
+    defaults: { _controller: GCDBundle:TB:Admin }

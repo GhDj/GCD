@@ -304,4 +304,8 @@ class Patient
     {
         return $this->pwPatient;
     }
+     public function __toString()
+{
+    return $this->nomPatient;
+}
 }

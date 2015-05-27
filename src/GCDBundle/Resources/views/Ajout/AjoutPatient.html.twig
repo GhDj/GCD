@@ -1,7 +1,7 @@
 {%extends "GCDBundle::layout.html.twig"%}
 {%block container %}
     
-   {% if is_granted("ROLE_DENTISTE")||is_granted("ROLE_SECRETAIRE") %}
+   {% if (is_granted("ROLE_DENTISTE") or is_granted("ROLE_SECRETAIRE")) %}
   
       {{form_start(form,{ 'attr': {'class': 'form-signin','method' : 'POST'}})}}
       <!--<form class="form-signin" method="post" action="" >-->
