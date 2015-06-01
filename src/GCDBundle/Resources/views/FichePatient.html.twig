@@ -11,40 +11,134 @@
   border: 0px;
   color: rgb(47, 187, 241);
 }
+
+#acts, #rdvs, #ordonnances
+{
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.84);
+    border: 2px solid #4c4c4c;
+    z-index: 500;
+    width: 500px;
+    left: 31%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    min-height: 190px;
+}
+
+#acts span, #rdvs span, #ordonnances span {
+    position: absolute;
+  bottom: 0;
+  left: 86%;
+  color: #4c4c4c;
+}
 </style>
 {%endblock%}
 
 {%block container %}
-  
+   
            <h2 class="form-signin-heading">Fiche Patient : {{ Patient.idPatient }} |
      {{ Patient.nomPatient }} {{ Patient.prenomPatient }}</h2>
-     <div class="form_align">
-          
      
-     {% for a in act %}
-         {% if a.idPatient|trans == Patient.nomPatient|trans %}
-             <p>  {{ a.libelle }}</p>
-          {% endif%}      
-     {%endfor%}
-     {% for b in ord%}
-         <p> {{ b.contenu }} </p>
-     {% endfor %}
-     
+          <div id="icone-container">
+              {% if is_granted('ROLE_DENTISTE') %}
+     <div class="icon-container">   
+                      
+         <a href="#" class="tb-icon-link" id="ords-link">
+                 <img class="img-responsive tb-icon-img " src="{{ asset('bundles/gcd/images/ordonance.png') }}" />
+                 <span  class="icon-title">Les ordonnances </span>
+             </a>
+            </div> 
+                 {% endif%} 
+                 <div class="icon-container">   
+                      
+                     <a href="#" class="tb-icon-link" id="rdvs-link">
+                 <img class="img-responsive tb-icon-img " src="{{ asset('bundles/gcd/images/rdv.png') }}" />
+                 <span  class="icon-title">Les Rendez-vous </span>
+             </a>
+            </div> 
+                 {% if is_granted('ROLE_DENTISTE') %}
+                 <div class="icon-container">   
+                      
+                     <a href="#" class="tb-icon-link" id="acts-link">
+                 <img class="img-responsive tb-icon-img " src="{{ asset('bundles/gcd/images/syringe6.png') }}" />
+                 <span  class="icon-title">Les actes médicales </span>
+             </a>
+            </div> 
+                 {% endif%} 
+          </div>
+                 {% if is_granted('ROLE_DENTISTE') %}
+                 <div id="acts">
+                     {% for a in act %}
+                    {% if a.idPatient|trans == Patient.nomPatient|trans %}
+                        <p>  {{ a.libelle }}</p>
+                     {% endif%}      
+                {%endfor%}
+                <span>
+                   <a href="#"> X Fermer </a>
+                </span>
+                 </div>
+                 
+                 <div id="ordonnances">
+                     {% for b in ord%}
+                        <p> {{ b.contenu }}<a href="{{ path('gcd_suppOrd',{ id:b.id})}}">
+
+                            Supprimer
+
+                   </a> </p>
+                    {% endfor %}
+                        <span>
+                  <a href="#"> X Fermer </a>
+                </span>
+                 </div>
+                 {% endif %}
+                    <div id="rdvs">
+                        <h3>Liste des Rendez vous</h3>
      {% for c in rdv %}
-         <p> {{ c.dateRdv|date('d-M-Y') }} | {{ c.horraireRdv|date('H:i') }} </p>
-     {% endfor %}
-      
-    </div>
-  
+         
+         <p> {{ c.dateRdv|date('d-M-Y') }} | {{ c.horraireRdv|date('H:i') }} 
+             <a href="{{ path('gcd_suppRdv',{ id:c.idRdv})}}">
 
-  
+                            Supprimer
 
-    
+                   </a></p>
+     {% endfor %}   
+     <span>
+         <a href="#"> X Fermer </a>
+                </span>
+                    </div>
 
     
 {%endblock%}
 
 {%block javascripts %}
+    <script>
+$('#ords-link').click(function() {
+   $('#ordonnances').toggle();
+});
 
+$('#ordonnances span').click(function() {
+   $('#ordonnances').hide();
+});
+
+$('#acts-link').click(function() {
+   $('#acts').toggle();
+});
+
+$('#acts span').click(function() {
+   $('#acts').hide();
+});
+
+
+$('#rdvs-link').click(function() {
+   $('#rdvs').toggle();
+});
+
+$('#rdvs span').click(function() {
+   $('#rdvs').hide();
+});
+
+</script>
 
 {% endblock %}

@@ -64,4 +64,35 @@ public function SuppPatientAction(Request $request,$id)
          
    
     }
+    public function SuppRdvAction(Request $request,$id)
+    {
+        $rep = $this->getDoctrine()->getRepository('GCDBundle:Rdv');
+         $dentisteAsup = $rep->find($id);
+    	 $em = $this->getDoctrine()->getEntityManager();
+
+         $em->remove($dentisteAsup);
+         $em->flush();
+         $securityContext = $this->container->get('security.context');
+         if ($securityContext->isGranted('ROLE_SECRETAIRE')) 
+            return $this->redirect($this->generateUrl('gcd_secretaire'));
+         if ($securityContext->isGranted('ROLE_DENTISTE')) 
+             return $this->redirect($this->generateUrl('gcd_dentiste'));
+         return $this->redirect($this->generateUrl('gcd_homepage'));  
+    }
+    
+    public function SuppOrdAction(Request $request,$id)
+    {
+        $rep = $this->getDoctrine()->getRepository('GCDBundle:Ordonnance');
+         $dentisteAsup = $rep->find($id);
+    	 $em = $this->getDoctrine()->getEntityManager();
+
+         $em->remove($dentisteAsup);
+         $em->flush();
+         $securityContext = $this->container->get('security.context');
+         if ($securityContext->isGranted('ROLE_SECRETAIRE')) 
+            return $this->redirect($this->generateUrl('gcd_secretaire'));
+         if ($securityContext->isGranted('ROLE_DENTISTE')) 
+             return $this->redirect($this->generateUrl('gcd_dentiste'));
+         return $this->redirect($this->generateUrl('gcd_homepage'));  
+    }
 }

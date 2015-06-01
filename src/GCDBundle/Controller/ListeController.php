@@ -3,6 +3,10 @@
 
 namespace GCDBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
+use GCDBundle\Entity\Patient;
+use GCDBundle\Form\PatientType;
 
 class ListeController extends Controller {
     
@@ -13,11 +17,29 @@ class ListeController extends Controller {
             return $this->render('GCDBundle:Listes:dentistes.html.twig',array('dentiste'=> $dentiste));
     }
     
-  public function PatientsAction()
+  public function PatientsAction(Request $request)
     {
+      
+      $forms = $this->createFormBuilder()
+        ->add('search', 'text')
+        ->add('Recherche','submit')
+        ->getForm();
+      
+        if($request->getMethod() == "POST" ) {
+            
+                // find by search criteria
+                $p = $forms->get('search')->getData();
+               // the query builder is returned, do something with it ($qb->getQuery()->getResult())
+                $patient=$this->getDoctrine()-> getRepository('GCDBundle:Patient')->findBy(array('nomPatient'=>$p));
+                 //$patient=$this->getDoctrine()-> getRepository('GCDBundle:Patient')->findAll();
+        
+            return $this->render('GCDBundle:Listes:patients.html.twig',array('patient'=> $patient,'forms'=>$forms->createView(),'p'=>$p));
+            
+        }
+        
         $patient=$this->getDoctrine()-> getRepository('GCDBundle:Patient')->findAll();
         
-            return $this->render('GCDBundle:Listes:patients.html.twig',array('patient'=> $patient));
+        return $this->render('GCDBundle:Listes:patients.html.twig',array('patient'=> $patient,'forms'=>$forms->createView()));
     }
     public function SecretairesAction()
     {

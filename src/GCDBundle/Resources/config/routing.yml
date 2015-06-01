@@ -28,6 +28,10 @@ gcd_ajoutPatient:
 gcd_ajoutRdv:
     path:     /Ajout/Rdv
     defaults: { _controller: GCDBundle:Ajout:AjoutRDV}
+    
+gcd_suppRdv:
+    path: /Supprimer/rdv/{id}
+    defaults: { _controller: GCDBundle:Supprimer:SuppRdv }
 
 gcd_compte:
     path:     /Modifier/Compte
@@ -116,3 +120,7 @@ gcd_fiche_patient:
 gcd_ordonnance:
     path: /Ajout/Ordonnance
     defaults: { _controller: GCDBundle:Fiche:AjoutOrdonnance}
+
+gcd_suppOrd:
+    path: /Supprimer/ord/{id}
+    defaults: { _controller: GCDBundle:Supprimer:SuppOrd }

@@ -28,8 +28,8 @@
             <div class="header-logo">
                   </div>
              
-              <nav class="navbar navbar-inverse navbar-fixed-top">
-                                  <img class="img-responsive masthead-brand" height="50" src="{{ asset('bundles/gcd/images/logo_acc.png') }}" />
+              <nav class="navbar navbar-fixed-top">
+                                  <img class="img-responsive masthead-brand" height="50" src="{{ asset('bundles/gcd/images/logo-login.gif') }}" />
 
                 <ul class="nav nav-justified">
                   <li class="active"><a href="#">Accueil</a></li>
@@ -41,7 +41,7 @@
           
           </div>
 
-          <div class="inner cover text-center">
+                                  <div id="accueil-container" class="inner cover text-center">
             <h1 class="cover-heading">  
             </h1>
             <p class="lead">
@@ -58,8 +58,10 @@
             {% else %}
                 
                <p class="lead">
-              <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-default">Se Connecter</a>
-            </p>
+              <a class="accueil_button" href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-default">Se Connecter</a>
+              <a class="accueil_button" href="{{ path('gcd_ajout_dentiste') }}" class="btn btn-lg btn-default">Inscription</a>
+
+               </p>
             {% endif %}
         </div>
 

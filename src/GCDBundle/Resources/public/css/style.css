@@ -101,13 +101,12 @@ body {
 }
 .form_radio{
     
-                 width:444px;
+                width:444px;
                 margin: 0px auto;
                 border: 4px solid #FFF;
                 border-radius: 0px;
                 background: transparent;
-                height:55px
-                ;
+                height:70px;
 }
 .form_radio label {color:#fff;
     font-size:30px
@@ -315,4 +314,10 @@ tr
 
 .form_rdv{width:50%;
       display: inline-block;
+}
+
+#accueil-container {
+  min-height: 150px;
+  min-width: 350px;
+  background: rgba(255, 255, 255, 0.83);
 }
