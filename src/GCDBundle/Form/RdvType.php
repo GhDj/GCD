@@ -19,7 +19,7 @@ class RdvType extends AbstractType
                             'widget' => 'single_text',
                             'format' => 'yyyy-MM-dd',))
             ->add('horraireRdv','time')
-            ->add('idPatient','hidden')
+            ->add('idPatient')
             ->add('Ajouter','submit')
         ;
     }

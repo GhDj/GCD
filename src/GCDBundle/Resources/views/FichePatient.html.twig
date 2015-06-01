@@ -1,0 +1,50 @@
+{% extends "GCDBundle::layout.html.twig" %}
+{%block stylesheets %}
+<style>
+@font-face {
+    font-family:digital;
+    src: url({{ asset('bundles/gcd/font/DS-DIGIB.TTF') }});
+}
+#gcd_gcdbundle_rdv_horraireRdv_hour,#gcd_gcdbundle_rdv_horraireRdv_minute,#gcd_gcdbundle_rdv_horraireRdv{
+  font-family: digital;
+  font-size: 30px;
+  border: 0px;
+  color: rgb(47, 187, 241);
+}
+</style>
+{%endblock%}
+
+{%block container %}
+  
+           <h2 class="form-signin-heading">Fiche Patient : {{ Patient.idPatient }} |
+     {{ Patient.nomPatient }} {{ Patient.prenomPatient }}</h2>
+     <div class="form_align">
+          
+     
+     {% for a in act %}
+         {% if a.idPatient|trans == Patient.nomPatient|trans %}
+             <p>  {{ a.libelle }}</p>
+          {% endif%}      
+     {%endfor%}
+     {% for b in ord%}
+         <p> {{ b.contenu }} </p>
+     {% endfor %}
+     
+     {% for c in rdv %}
+         <p> {{ c.dateRdv|date('d-M-Y') }} | {{ c.horraireRdv|date('H:i') }} </p>
+     {% endfor %}
+      
+    </div>
+  
+
+  
+
+    
+
+    
+{%endblock%}
+
+{%block javascripts %}
+
+
+{% endblock %}

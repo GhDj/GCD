@@ -31,4 +31,12 @@ class ListeController extends Controller {
         
             return $this->render('GCDBundle:Listes:cabinets.html.twig',array('cabinet'=> $cabinet));
     }
+    
+    public function RdvsAction()
+    {
+        $rdv=$this->getDoctrine()-> getRepository('GCDBundle:Rdv')->findAll();
+        $patient=$this->getDoctrine()-> getRepository('GCDBundle:Patient')->findAll();
+
+        return $this->render('GCDBundle:Listes:rdvs.html.twig',array('rdv'=> $rdv,'patient'=>$patient));
+    }
 }

@@ -21,6 +21,9 @@ use GCDBundle\Form\RdvType;
 use GCDBundle\Entity\ActMedical;
 use GCDBundle\Form\ActMedicalType;
 
+use GCDBundle\Entity\Ordonnance;
+use GCDBundle\Form\OrdonnanceType;
+
 use GCDBundle\Entity\User;
 
 use FOS\UserBundle\FOSUserEvents;
@@ -34,9 +37,63 @@ use FOS\UserBundle\Model\UserInterface;
 
 class FicheController extends Controller
 {
+    public function AjoutOrdonnanceAction(Request $request)
+    {
+            $am =new Ordonnance();
+             $patient=new Patient();           
+        
+            $form = $this->createForm(new OrdonnanceType(),$am);
+            
+            $request = $this->getRequest();
+        
+            $form->handleRequest($request);
+        
+            if($request->getMethod() == "POST" ) {
+            if ($form->isValid()){
+                //$idp = $form->get('idPatient').getData() ;
+                //$libelle = $form->get('libelle')->getData();
+                $description = $form->get('contenu')->getData();
+                $p = $form->get('idpatient')->getData();
+                //$p = $form->get('nomPatient')->getViewData();
+                //$idr = $formP->get('idPatient').getData().$form->get('dateRdv')->getData();
+                //$rep = $this->getDoctrine()->getManager()->getRepository('GCDBundle:Patient');
+                //$pat =new Patient(); 
+                //$pat = $rep->findOneBy(array('nomPatient'=>$p->getNomPatient()));
+               // $idp= $pat->getIdPatient();
+                
+                //$am->setLibelle($libelle);
+                $am->setContenu($description);
+                $am->setIdpatient($p);
+                              
+               
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($am);
+                $em->flush();
+                
+                
+                //return new Response($nom.' ajouté à la base');
+                return $this->render('GCDBundle:Ajout:Ordonnance.html.twig',array('name'=>"Ordonnance Ajoutée",'form'=>$form->createView(),'Patient'=>$patient));
+                
+            }
+        }
+            
+               /* $form->bind($request);
+                $dentiste = $form->getData();
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($dentiste);
+                $em->flush();
+                return $this->redirect($this->generateUrl('app_liste_dentiste'));*/
+
+        //$am =$this->getDoctrine()-> getRepository('GCDBundle:Ordonnance')->findAll();
+       $patient=$this->getDoctrine()-> getRepository('GCDBundle:Patient')->findAll();
+        return $this->render('GCDBundle:Ajout:Ordonnance.html.twig',array('form'=>$form->createView(),'Patient'=>$patient));
+ 
+    }
+
     
-    
-   
+
+
+
     public function ConfirmationAction(Request $request){
          $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
@@ -137,7 +194,7 @@ class FicheController extends Controller
 
      }
     
-   public function AjoutActMAction(Request $request){
+    public function AjoutActMAction(Request $request){
              $am =new ActMedical();
              $patient=new Patient();           
         
@@ -191,5 +248,23 @@ class FicheController extends Controller
         return $this->render('GCDBundle:Ajout:ActMedical.html.twig',array('am'=> $am,'form'=>$form->createView(),'Patient'=>$patient));
  
  
+   }
+   
+   
+   
+   public function FichePatientAction(Request $request, $id)
+   {
+       $patient = new Patient();
+       $act = new ActMedical();
+       $ord = new Ordonnance();
+       $patient = $this->getDoctrine()->getRepository('GCDBundle:Patient')->find($id);
+       //$act = $this->getDoctrine()->getRepository('GCDBundle:ActMedical')->findOneBy(array('idPatient'=>$id));
+       $act = $this->getDoctrine()->getRepository('GCDBundle:ActMedical')->findAll();
+       $ord = $this->getDoctrine()->getRepository('GCDBundle:Ordonnance')->findBy(array('idpatient'=>$id));
+       $rdv = new Rdv();
+       $rdv = $this->getDoctrine()->getRepository('GCDBundle:RDV')->findBy(array('idPatient'=>$id));
+
+       return $this->render('GCDBundle::FichePatient.html.Twig',array('Patient'=>$patient,'act'=>$act,'ord'=>$ord,'rdv'=>$rdv));
+       
    }
 }

@@ -4,29 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/TB/Admin.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/ModifierController.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/SecurityController.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/SupprimerController.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/Compte/Dentiste.html.twig</file>
+            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/FicheController.php</file>
             <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/TB/Patient.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/ListeController.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/Default/index.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/CompteController.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/Modifier/modifierCabinet.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/connexion.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/TB/Dentiste.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/Listes/dentistes.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/AjoutController.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/public/css/accueil.css</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/layout.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/TB/Secretaire.html.twig</file>
             <file>file:/C:/wamp/www/GCD/src/GCDBundle/Controller/TBController.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/config/routing.yml</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Redirection/AfterLoginRedirection.php</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/Modifier/modifierDentiste.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/views/Listes/patients.html.twig</file>
-            <file>file:/C:/wamp/www/GCD/src/GCDBundle/Resources/public/css/style.css</file>
-            <file>file:/C:/wamp/www/GCD/app/config/security.yml</file>
         </group>
     </open-files>
 </project-private>

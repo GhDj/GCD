@@ -56,6 +56,10 @@ gcd_liste_secretaires:
 gcd_liste_cabinets:
     path:   /listes/cabinets
     defaults: { _controller: GCDBundle:Liste:Cabinets}
+
+gcd_liste_rdvs:
+    path:   /listes/rdvs
+    defaults: { _controller: GCDBundle:Liste:Rdvs}
     
 gcd_modifierDentiste:
     path: /modifier/dentiste/{id}
@@ -104,3 +108,11 @@ gcd_patient:
 gcd_admin:
     path: /admin
     defaults: { _controller: GCDBundle:TB:Admin }
+    
+gcd_fiche_patient:
+    path: /Patient{id}/Fiche
+    defaults: {_controller: GCDBundle:Fiche:FichePatient}
+    
+gcd_ordonnance:
+    path: /Ajout/Ordonnance
+    defaults: { _controller: GCDBundle:Fiche:AjoutOrdonnance}

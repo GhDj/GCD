@@ -1,0 +1,66 @@
+{% extends "GCDBundle::layout.html.twig" %}
+{%block stylesheets %}
+<style>
+@font-face {
+    font-family:digital;
+    src: url({{ asset('bundles/gcd/font/DS-DIGIB.TTF') }});
+}
+#gcd_gcdbundle_rdv_horraireRdv_hour,#gcd_gcdbundle_rdv_horraireRdv_minute,#gcd_gcdbundle_rdv_horraireRdv{
+  font-family: digital;
+  font-size: 30px;
+  border: 0px;
+  color: rgb(47, 187, 241);
+}
+</style>
+{%endblock%}
+
+{%block container %}
+  
+      {{form_start(form,{ 'attr': {'class': 'form-signin','method' : 'POST'}})}}
+      <!--<form class="form-signin" method="post" action="" >-->
+      <h2>
+          {% if name is defined %}
+          {{name}}
+          {% endif %}
+      </h2>
+        <h2 class="form-signin-heading">Ajouter une ordonnance</h2>
+     <div class="form_align">
+         <select name="idp" class="form-control" id="idp">
+              <option value="">Choisir le patient</option>
+     {% for pt in Patient %}
+        <option value="{{ pt.idPatient}}">  {{ pt.nomPatient}} {{ pt.prenomPatient}}</option>
+     
+     {%endfor%}
+     </select>
+            {{form_widget(form.idpatient, { 'attr': {'class': 'form-control','placeholder':'Nom de patient','style':'display:none;'}})}}
+
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="Nom" name="username" autofocus="">-->
+        <!--<input type="text" id="inputEmail" class="form-control" placeholder="prenom" name="username" >-->
+      {{form_widget(form.contenu, { 'attr': {'class': 'form-control','placeholder' : "Description de l'act"}})}}
+
+    </div>
+  
+
+  
+ <!-- <button id="connecter" class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>-->
+           {{form_widget(form.Ajouter, { 'attr': {'class': 'btn btn-lg btn-primary btn-block','id' : 'connecter'}})}}
+{{ form_row(form._token) }}
+      </form>
+     
+  
+
+    
+{{form_end(form)}}
+    
+{%endblock%}
+
+{%block javascripts %}
+
+<script>
+    $("#idp").change(function(){
+        
+        $('#gcdbundle_ordonnance_idpatient').val($('#idp option:selected').val()) ;
+    });
+</script>
+
+{% endblock %}

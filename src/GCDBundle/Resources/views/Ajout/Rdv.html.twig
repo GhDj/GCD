@@ -5,7 +5,7 @@
     font-family:digital;
     src: url({{ asset('bundles/gcd/font/DS-DIGIB.TTF') }});
 }
-#gcd_authentificationbundle_rdv_horraireRdv_hour,#gcd_authentificationbundle_rdv_horraireRdv_minute,#gcd_authentificationbundle_rdv_horraireRdv{
+#gcd_gcdbundle_rdv_horraireRdv_hour,#gcd_gcdbundle_rdv_horraireRdv_minute,#gcd_gcdbundle_rdv_horraireRdv{
   font-family: digital;
   font-size: 30px;
   border: 0px;
@@ -21,13 +21,7 @@
 
         <h2 class="form-signin-heading">Ajout Rendez-vous</h2>
      <div class="form_align">
-          <select name="idp" class="form-control" id="idp">
-              <option value="">Choisir le patient</option>
-     {% for pt in Patient %}
-        <option value="{{ pt.idPatient}}">  {{ pt.nomPatient}} {{ pt.prenomPatient}}</option>
-     
-     {%endfor%}
-     </select>
+       
         <!--<input type="text" id="inputEmail" class="form-control" placeholder="Nom" name="username" autofocus="">-->
         <!--<input type="text" id="inputEmail" class="form-control" placeholder="prenom" name="username" >-->
        {{form_widget(form.dateRdv, { 'attr': {'class': 'form-control','placeholder' : 'DateRdv'}})}}

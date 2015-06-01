@@ -341,7 +341,7 @@ class AjoutController extends Controller
                 return $this->redirect($this->generateUrl('app_liste_dentiste'));*/
 
         $rdv=$this->getDoctrine()-> getRepository('GCDBundle:RDV')->findAll();
-                $patient=$this->getDoctrine()-> getRepository('GCDBundle:Patient')->findAll();
+        $patient=$this->getDoctrine()-> getRepository('GCDBundle:Patient')->findAll();
         return $this->render('GCDBundle:Ajout:Rdv.html.twig',array('rdv'=> $rdv,'form'=>$form->createView(),'Patient'=>$patient));
  
  
